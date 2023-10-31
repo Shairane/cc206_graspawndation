@@ -25,73 +25,86 @@ class ProfileApp extends StatelessWidget {
             ),
           ),
           actions: <Widget>[
-            IconButton(icon:const Icon(Icons.search), onPressed: () => {},
-            iconSize: 30.0,
- ),
-        
+            IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () => {},
+              iconSize: 30.0,
+            ),
           ],
         ),
-        body: const Column(
+        body: Stack(
           children: [
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                'Adopt Your Favorite One!',
-                style: TextStyle(
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 16, 85, 119),
-                ),
-              ),
+            Image.network(
+              'https://t3.ftcdn.net/jpg/02/98/20/18/360_F_298201895_5bPjYW2qPWJ52Wg40H80d8hCAHsPIfpE.jpg',
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
             ),
-            Padding(
-              padding: EdgeInsets.all(5.0),
-              child: Text(
-                'Recommended',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.w300,
-                  backgroundColor: Colors.lightBlueAccent,
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'Adopt Your Favorite One!',
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 16, 85, 119),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            AnimalSearchBar(),
-            Expanded(
-              child: AnimalProfileGrid(),
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: Text(
+                    'Recommended',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.w300,
+                      backgroundColor: Colors.lightBlueAccent,
+                    ),
+                  ),
+                ),
+                AnimalSearchBar(),
+                Expanded(
+                  child: AnimalProfileGrid(),
+                ),
+              ],
             ),
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(   
-          unselectedItemColor: Colors.black38,     
-          unselectedFontSize: 14.0,
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          unselectedIconTheme: const IconThemeData(color: Colors.black, size: 18.0) , 
-          unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
-          selectedFontSize: 16.0,
-          selectedIconTheme: const IconThemeData(color: Color.fromARGB(96, 24, 4, 116), size: 20.0),
-          selectedItemColor: Colors.blue,
-          selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.chat),
-              label: 'Chats',
-           ),
-           BottomNavigationBarItem(
-            icon: Icon(Icons.add_location_alt_rounded),
-            label: 'Services',
-           ),
-           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle_rounded),
-            label: 'Profile',
-           ),
-          ]
-        ),
+        bottomNavigationBar: BottomNavigationBar(
+            unselectedItemColor: Colors.black38,
+            unselectedFontSize: 14.0,
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
+            unselectedIconTheme:
+                const IconThemeData(color: Colors.black, size: 18.0),
+            unselectedLabelStyle:
+                const TextStyle(fontWeight: FontWeight.normal),
+            selectedFontSize: 16.0,
+            selectedIconTheme: const IconThemeData(
+                color: Color.fromARGB(96, 24, 4, 116), size: 20.0),
+            selectedItemColor: Colors.blue,
+            selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.chat),
+                label: 'Chats',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.add_location_alt_rounded),
+                label: 'Services',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle_rounded),
+                label: 'Profile',
+              ),
+            ]),
       ),
     );
   }
@@ -164,37 +177,43 @@ class AnimalProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Expanded(
-            child: Image.network(
-              animalProfile.imageUrl,
-              height: 300.0,
-              width: 250.0,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Expanded(
-            child: ListTile(
-              title: Text(
-                animalProfile.name,
-                style: const TextStyle(
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueGrey,
-                ),
+      child: Container(
+        decoration: BoxDecoration(
+            color: Color(0xFFE3F2FD),
+            border: Border.all(),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        child: Column(
+          children: [
+            Expanded(
+              child: Image.network(
+                animalProfile.imageUrl,
+                height: 300.0,
+                width: 250.0,
+                fit: BoxFit.cover,
               ),
-              subtitle: Text(
-                animalProfile.description,
-                style: const TextStyle(
-                  fontSize: 18.0,
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-              isThreeLine: true,
             ),
-          ),
-        ],
+            Expanded(
+              child: ListTile(
+                title: Text(
+                  animalProfile.name,
+                  style: const TextStyle(
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 120, 189, 224),
+                  ),
+                ),
+                subtitle: Text(
+                  animalProfile.description,
+                  style: const TextStyle(
+                    fontSize: 18.0,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                isThreeLine: true,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -216,30 +235,36 @@ class AnimalProfile {
 List<AnimalProfile> animalProfiles = [
   AnimalProfile(
       name: 'Kitty',
-      description: '3 months old \nLocation: Delgado Animal Dey Care & Rescue Center',
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbml1-eIUUYwuqKb9Fsl6yBE26sIrYOoNV5w&usqp=CAU'),
+      description:
+          '3 months old \nLocation: Delgado Animal Dey Care & Rescue Center',
+      imageUrl:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbml1-eIUUYwuqKb9Fsl6yBE26sIrYOoNV5w&usqp=CAU'),
   AnimalProfile(
       name: 'Mocha',
-      description: '2 years old \nLocation: Iloilo City Pound and Animal Shelter',
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRVq6mRRjn2a7auju8TDKVnsBaMH040W6n1B9o04IqgmYM6SILRI6no0ChV-8BqkY6VDY&usqp=CAU'),
+      description:
+          '2 years old \nLocation: Iloilo City Pound and Animal Shelter',
+      imageUrl:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRVq6mRRjn2a7auju8TDKVnsBaMH040W6n1B9o04IqgmYM6SILRI6no0ChV-8BqkY6VDY&usqp=CAU'),
   AnimalProfile(
       name: 'Staire',
       description: '9 months old \nLocation: Lambunao Animal Shelter',
-      imageUrl: 'https://i0.wp.com/thediscerningcat.com/wp-content/uploads/2021/11/tabby-cat-about-to-sneeze.jpg?resize=533%2C800&ssl=1'),
+      imageUrl:
+          'https://i0.wp.com/thediscerningcat.com/wp-content/uploads/2021/11/tabby-cat-about-to-sneeze.jpg?resize=533%2C800&ssl=1'),
   AnimalProfile(
       name: 'Berry',
-      description: '6 months old \nLocation: Pet Headquarters Animal Clinic-Pet HQ',
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0NsseirRK3mGyQyuLWKSwLDRJ7aIFRSyw6A&usqp=CAU'),
+      description:
+          '6 months old \nLocation: Pet Headquarters Animal Clinic-Pet HQ',
+      imageUrl:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0NsseirRK3mGyQyuLWKSwLDRJ7aIFRSyw6A&usqp=CAU'),
   AnimalProfile(
       name: 'Milo',
       description: '4 years old \nLocation: Animal Shelter Veterinary Clinic',
-      imageUrl: 'https://hips.hearstapps.com/hmg-prod/images/large-cat-breed-1553197454.jpg'),
+      imageUrl:
+          'https://hips.hearstapps.com/hmg-prod/images/large-cat-breed-1553197454.jpg'),
   AnimalProfile(
       name: 'Luigi John Dayot a.k.a Luwi',
       description: '5 months old \nLocation: Ilonggo Vets Animal Clinic',
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoHXBaMSa1JrolLnhYIcEGgXDML0DYlNM0NoBnJnA-xHf6nUv3o80xgYGDp-E_TaUGQyI&usqp=CAU'),
+      imageUrl:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoHXBaMSa1JrolLnhYIcEGgXDML0DYlNM0NoBnJnA-xHf6nUv3o80xgYGDp-E_TaUGQyI&usqp=CAU'),
   // Add more AnimalProfile objects for other animals
 ];
-
-
-
