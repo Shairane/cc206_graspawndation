@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:exercise/component/home_drawer.dart';
 
 void main() {
   runApp(const ProfileApp());
@@ -14,9 +15,16 @@ class ProfileApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Animal Profile'),
-          leading: const Icon(
+          leading: Builder(builder: (BuildContext context) {
+            return IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                });
+          }),
+          /* leading: const Icon(
             Icons.menu,
-          ),
+          ), */
           elevation: 50.0,
           shadowColor: Colors.blue,
           shape: const RoundedRectangleBorder(
@@ -32,6 +40,7 @@ class ProfileApp extends StatelessWidget {
             ),
           ],
         ),
+        drawer: const HomeDrawer(),
         body: Stack(
           children: [
             Image.network(
@@ -40,7 +49,7 @@ class ProfileApp extends StatelessWidget {
               width: double.infinity,
               height: double.infinity,
             ),
-            Column(
+            const Column(
               children: [
                 Padding(
                   padding: EdgeInsets.all(8.0),
@@ -179,9 +188,9 @@ class AnimalProfileCard extends StatelessWidget {
       margin: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-            color: Color(0xFFE3F2FD),
+            color: const Color(0xFFE3F2FD),
             border: Border.all(),
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+            borderRadius: const BorderRadius.all(Radius.circular(10))),
         child: Column(
           children: [
             Expanded(
